@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.markdown {
+    font-family: 'Inter', sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #212121;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.markdown > * {
+    margin-bottom: 1rem;
+}
+
+/* Títulos */
+
+.markdown h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.markdown h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: .3rem;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.markdown h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 2rem 0 .8rem;
+}
+
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+}
+
+/* Texto */
+
+.markdown p {
+    margin-bottom: 1rem;
+}
+
+.markdown strong {
+    font-weight: 700;
+}
+
+.markdown em {
+    font-style: italic;
+}
+
+/* Listas */
+
+.markdown ul,
+.markdown ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.markdown li::marker {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.markdown li {
+    margin: .4rem 0;
+    padding-left: .25rem;
+    line-height: 1.7;
+}
+
+.markdown li > ul,
+.markdown li > ol {
+    margin-top: .4rem;
+    margin-bottom: .4rem;
+}
+
+/* Checkbox */
+
+.markdown li:has(input[type="checkbox"]) {
+    list-style: none;
+    margin-left: -1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    padding: .25rem 0;
+}
+
+.markdown input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #1976d2;
+
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.markdown li:has(input[type="checkbox"]:checked) {
+    color: #777;
+}
+
+.markdown li:has(input[type="checkbox"]:checked) code {
+    opacity: .8;
+}
+
+/* Links */
+
+.markdown a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.markdown a:hover {
+    text-decoration: underline;
+}
+
+/* Código Inline */
+
+.markdown :not(pre) > code {
+    background: #f3f4f6;
+    color: #d63384;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: "JetBrains Mono", monospace;
+}
+
+/* Blocos de código */
+
+.code-block {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: .7rem 1rem;
+
+    background: #252526;
+    color: #d4d4d4;
+
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+/* Citações */
+
+.markdown blockquote {
+    border-left: 4px solid #1976d2;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: #616161;
+    font-style: italic;
+}
+
+/* Tabelas */
+
+.markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+
+.markdown th,
+.markdown td {
+    border: 1px solid #e0e0e0;
+    padding: .75rem;
+    text-align: left;
+}
+
+.markdown th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+.markdown tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* Imagens */
+
+.markdown img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+/* Vídeos */
+
+.markdown video {
+    width: 100%;
+    max-width: 900px;
+
+    display: block;
+
+    margin: 1.5rem auto;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.markdown iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    border: none;
+
+    border-radius: 10px;
+
+    margin: 1.5rem 0;
+}
+
+/* Tabela */
+
+.markdown table {
+    width: 100%;
+
+    margin: 1.5rem 0;
+
+    border-collapse: collapse;
+
+    border-radius: 8px;
+    overflow: hidden;
+
+    font-size: 0.95rem;
+
+    border: 1px solid #d0d7de;
+}
+
+.markdown thead {
+    background-color: #f6f8fa;
+}
+
+.markdown th {
+    padding: .9rem 1rem;
+
+    text-align: left;
+    font-weight: 600;
+
+    border-bottom: 2px solid #d0d7de;
+}
+
+.markdown td {
+    padding: .9rem 1rem;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.markdown tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.markdown tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.markdown th:not(:last-child),
+.markdown td:not(:last-child) {
+    border-right: 1px solid #e5e7eb;
+}
+
+/* Bloco de detalhes */
+
+.markdown details {
+    margin: 1.5rem 0;
+
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    background: #fff;
+}
+
+.markdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.markdown summary {
+    padding: 1rem 1.25rem;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    background: #f8fafc;
+
+    user-select: none;
+
+    transition: background-color .2s;
+
+    list-style: none;
+}
+
+.markdown summary:hover {
+    background: #eef2f7;
+}
+
+.markdown details[open] summary {
+    border-bottom: 1px solid #d0d7de;
+}
+
+.markdown details > *:not(summary) {
+    padding: 1rem 1.25rem;
+}
+
+/* Bloco de aviso */
+
+.markdown blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+
+    border-left: 5px solid #1976d2;
+
+    background-color: #f8fafc;
+
+    color: #334155;
+
+    border-radius: 0 8px 8px 0;
+}
+
+.markdown blockquote p {
+    margin: 0;
+}
+
+.markdown blockquote p + p {
+    margin-top: .75rem;
+}
+
+/* Linha horizontal */
+
+.markdown hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 2.5rem 0;
+}
