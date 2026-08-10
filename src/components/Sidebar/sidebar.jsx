@@ -10,10 +10,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import SidebarButton from "./sidebarButton";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AlertToast from "../alertToast";
 import DeleteDialog from "./deleteDialog";
 
 export default function Sidebar({ documents = [], onRefresh }) {
+  const navigate = useNavigate()
+
   const [open, setOpen] = useState(false);
   const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
   const [documentToDelete, setDocumentToDelete] = useState(null);
