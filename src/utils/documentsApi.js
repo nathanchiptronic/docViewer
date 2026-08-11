@@ -31,7 +31,7 @@ export async function uploadDocument(file) {
 }
 
 export async function deleteDocument(fileName) {
-    const response = await fetch(`/api/docs/${fileName}`, {
+    const response = await fetch(`/api/docs/${encodeURIComponent(fileName)}`, {
         method: 'DELETE',
     });
 

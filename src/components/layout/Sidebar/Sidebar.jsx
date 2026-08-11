@@ -7,12 +7,12 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import HomeIcon from "@mui/icons-material/Home";
 
-import SidebarButton from "./sidebarButton";
+import SidebarButton from "./SidebarButton";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AlertToast from "../alertToast";
-import DeleteDialog from "./deleteDialog";
+import AlertToast from "../../shared/AlertToast";
+import DeleteDialog from "./DeleteDialog";
 
 export default function Sidebar({ documents = [], onRefresh }) {
   const navigate = useNavigate()

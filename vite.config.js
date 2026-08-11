@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import generateDocumentsIndex from './src/scripts/generateDocumentsIndex';
+import generateDocumentsIndex from './server/generateDocumentsIndex';
 import fs from 'fs';
 import path from 'path';
 
@@ -9,6 +9,8 @@ function markdownPlugin() {
     name: "markdown-plugin",
 
     configureServer(server) {
+      generateDocumentsIndex();
+
       server.middlewares.use(async (req, res, next) => {
         // POST /api/docs
         if (req.method === "POST" && req.url === "/api/docs") {
@@ -99,7 +101,6 @@ function markdownPlugin() {
 export default defineConfig({
   plugins: [
     react(),
-    generateDocumentsIndex(),
     markdownPlugin()
   ],
 })

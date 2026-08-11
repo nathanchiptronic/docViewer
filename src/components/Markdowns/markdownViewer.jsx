@@ -7,9 +7,9 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Link } from "react-router-dom";
 
 import '../../styles/markdown.css'
-import MermaidRender from './mermaidRender.jsx';
-import Heading from './heading';
-import { scrollToElement } from "../scrollToHash";
+import MermaidRender from './MermaidRender.jsx';
+import Heading from './Heading.jsx';
+import { scrollToElement } from '../shared/ScrollToHash.jsx';
 
 const languageNames = {
     js: "JavaScript",

@@ -1,19 +1,18 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import { useState } from "react";
 
-import { deleteDocument } from "../../utils/documentsApi";
-import { useNavigate, useRevalidator } from "react-router-dom";
+import { deleteDocument } from "../../../utils/documentsApi";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteDialog({ open, setOpen, setToast, document, onRefresh }) {
     const navigate = useNavigate();
-    const { revalidate } = useRevalidator();
 
-    const [deleteting, setDeleting] = useState(false);
+    const [deleting, setDeleting] = useState(false);
 
     async function handleDelete() {
         setDeleting(true);
         try {
-            const result = await deleteDocument(document.fileName);
+            await deleteDocument(document.fileName);
 
             setToast({
                 open: true,
@@ -22,7 +21,7 @@ export default function DeleteDialog({ open, setOpen, setToast, document, onRefr
             })
 
             setOpen(false)
-            await (onRefresh?.() ?? revalidate());
+            await onRefresh?.();
             navigate("/");
         } catch (error) {
             setToast({
@@ -55,8 +54,8 @@ export default function DeleteDialog({ open, setOpen, setToast, document, onRefr
                     Cancelar
                 </Button>
 
-                <Button variant="contained" sx={{ bgcolor: "red" }} onClick={() => handleDelete()}>
-                    Deletar
+                <Button variant="contained" sx={{ bgcolor: "red" }} disabled={deleting} onClick={() => handleDelete()}>
+                    {deleting ? "Deletando..." : "Deletar"}
                 </Button>
             </DialogActions>
         </Dialog>
