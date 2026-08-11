@@ -18,9 +18,9 @@ async function extractTitle(fileName) {
 
 export default async function generateDocumentsIndex() {
     try {
-        const docsDir = "./public/docs";
-        const outputDir = "./public/.generated";
-        const outputFile = `${outputDir}/documentsIndex.json`;
+        const docsDir = path.join(process.cwd(), "public", "docs");
+        const outputDir = path.join(process.cwd(), "public", ".generated");
+        const outputFile = path.join(outputDir, "documentsIndex.json");
 
         const markdowns = fs
             .readdirSync(docsDir)

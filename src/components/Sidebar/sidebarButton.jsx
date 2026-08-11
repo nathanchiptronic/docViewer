@@ -7,8 +7,6 @@ import { IconButton } from "@mui/material";
 
 import NotesIcon from '@mui/icons-material/Notes';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { deleteDocuments } from "../../utils/documentsApi";
-
 
 export default function SidebarButton({ title, slug, onDelete }) {
     const navigate = useNavigate();

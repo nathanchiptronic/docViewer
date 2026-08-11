@@ -5,6 +5,11 @@
     "title": "Arquitetura do Sistema"
   },
   {
+    "slug": "documento-teste",
+    "fileName": "documento-teste.md",
+    "title": "Documento de Teste"
+  },
+  {
     "slug": "fluxo-dados",
     "fileName": "fluxo-dados.md",
     "title": "Fluxo de Dados"

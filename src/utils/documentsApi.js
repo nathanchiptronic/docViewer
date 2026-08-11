@@ -13,7 +13,7 @@ export async function getDocuments() {
     }
 }
 
-export async function uploadDocuments(file) {
+export async function uploadDocument(file) {
     const content = await file.text();
 
     const response = await fetch('/api/docs', {
@@ -30,7 +30,7 @@ export async function uploadDocuments(file) {
     return await response.json();
 }
 
-export async function deleteDocuments(fileName) {
+export async function deleteDocument(fileName) {
     const response = await fetch(`/api/docs/${fileName}`, {
         method: 'DELETE',
     });

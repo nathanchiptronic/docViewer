@@ -11,7 +11,7 @@ export function scrollToElement(container, target, offset = 24) {
     });
 }
 
-export default function scrollToHash() {
+export default function ScrollToHash() {
     const { hash } = useLocation();
 
     useEffect(() => {

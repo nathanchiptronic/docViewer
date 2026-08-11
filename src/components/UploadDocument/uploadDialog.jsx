@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 import { useState } from "react";
 
 import DescriptionIcon from "@mui/icons-material/Description";
-import { uploadDocuments } from "../../utils/documentsApi";
+import { uploadDocument } from "../../utils/documentsApi";
 import { Alert, Snackbar } from "@mui/material";
 
 import { useNavigate, useRevalidator } from "react-router-dom";
@@ -35,7 +35,7 @@ export default function UploadDialog({ open, setOpen, onUpload }) {
         setSending(true);
 
         try {
-            const result = await uploadDocuments(file);
+            const result = await uploadDocument(file);
 
             setToast({
                 open: true,

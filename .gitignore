@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Documentos Markdown
+public/docs/*
+
+# Mantém a pasta docs no Git
+!public/docs/.gitkeep
+
+# Arquivos gerados
+.generated/*

@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import { useState } from "react";
 
-import { deleteDocuments } from "../../utils/documentsApi";
+import { deleteDocument } from "../../utils/documentsApi";
 import { useNavigate, useRevalidator } from "react-router-dom";
 
 export default function DeleteDialog({ open, setOpen, setToast, document, onRefresh }) {
@@ -13,7 +13,7 @@ export default function DeleteDialog({ open, setOpen, setToast, document, onRefr
     async function handleDelete() {
         setDeleting(true);
         try {
-            const result = await deleteDocuments(`${document.slug}.md`);
+            const result = await deleteDocument(document.fileName);
 
             setToast({
                 open: true,
