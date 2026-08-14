@@ -1,5 +1,10 @@
 [
   {
+    "slug": "api-doc-model",
+    "fileName": "api-doc-model.md",
+    "title": "Documentando Endpoints de API"
+  },
+  {
     "slug": "arquitetura",
     "fileName": "arquitetura.md",
     "title": "Arquitetura do Sistema"
@@ -13,6 +18,11 @@
     "slug": "fluxo-dados",
     "fileName": "fluxo-dados.md",
     "title": "Fluxo de Dados"
+  },
+  {
+    "slug": "JSONPlaceholder",
+    "fileName": "JSONPlaceholder.md",
+    "title": "API — JSONPlaceholder"
   },
   {
     "slug": "visao-geral",

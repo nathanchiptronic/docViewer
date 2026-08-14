@@ -2,28 +2,15 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Link } from "react-router-dom";
 
 import '../../styles/markdown.css'
 import MermaidRender from './MermaidRender.jsx';
 import Heading from './Heading.jsx';
 import { scrollToElement } from '../shared/ScrollToHash.jsx';
-
-const languageNames = {
-    js: "JavaScript",
-    javascript: "JavaScript",
-    ts: "TypeScript",
-    bash: "Bash",
-    sh: "Shell",
-    json: "JSON",
-    sql: "SQL",
-    xml: "XML",
-    java: "Java",
-    css: "CSS",
-    html: "HTML",
-};
+import ApiBlockRender from './ApiBlockRender.jsx';
+import { Children } from 'react';
+import CodeRender from './CodeRender.jsx';
 
 export default function MarkdownViewer({ fileName, directory = "/" }) {
     const [content, setContent] = useState("");
@@ -58,13 +45,20 @@ export default function MarkdownViewer({ fileName, directory = "/" }) {
                 components={{
                     // Captura uma tag <pre>
                     pre({ children }) {
-                        // Se a linguagem é "language-mermaid", passa para o componente renderizar
-                        if (children.props.className?.match("language-mermaid")) {
-                            return <MermaidRender chart={children.props.children} />;
+                        const codeElement = Children.only(children);
+                        const className = codeElement.props?.className ?? "";
+                        const language = /language-(\S+)/.exec(className)?.[1];
+                        const content = String(codeElement.props?.children ?? "");
+
+                        if (language === "mermaid") {
+                            return <MermaidRender chart={content} />;
                         }
 
-                        // Se não, não altera nada
-                        return <pre>{children}</pre>
+                        if (language === "api") {
+                            return <ApiBlockRender apiBlock={content} />;
+                        }
+
+                        return <pre>{children}</pre>;
                     },
                     // Captura a tag <code>
                     code({ className, children, ...props }) {
@@ -73,26 +67,9 @@ export default function MarkdownViewer({ fileName, directory = "/" }) {
                         const language = match?.[1]
 
                         // Se não for mermaid, paassa para a lib estilisar
-                        if (language && language !== "mermaid") {
+                        if (language && language !== "mermaid" && language !== "api") {
                             return (
-                                <div className='code-block'>
-                                    {/* Cria um reader com o nome da linguagem */}
-                                    <div className='code-header'>
-                                        {languageNames[language] ?? language}
-                                    </div>
-
-                                    <SyntaxHighlighter
-                                        language={language}
-                                        style={vscDarkPlus}
-                                        customStyle={{
-                                            margin: 0,
-                                            borderRadius: 0,
-                                            background: "#1e1e1e",
-                                        }}
-                                    >
-                                        {String(children).replace(/\n$/, "")}
-                                    </SyntaxHighlighter>
-                                </div>
+                                <CodeRender language={language} content={String(children).replace(/\n$/, "")}/>
                             );
                         }
 
