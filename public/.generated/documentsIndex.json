@@ -5,28 +5,13 @@
     "title": "Documentando Endpoints de API"
   },
   {
-    "slug": "arquitetura",
-    "fileName": "arquitetura.md",
-    "title": "Arquitetura do Sistema"
-  },
-  {
     "slug": "documento-teste",
     "fileName": "documento-teste.md",
     "title": "Documento de Teste"
   },
   {
-    "slug": "fluxo-dados",
-    "fileName": "fluxo-dados.md",
-    "title": "Fluxo de Dados"
-  },
-  {
     "slug": "JSONPlaceholder",
     "fileName": "JSONPlaceholder.md",
     "title": "API — JSONPlaceholder"
-  },
-  {
-    "slug": "visao-geral",
-    "fileName": "visao-geral.md",
-    "title": "Visão Geral"
   }
 ]
