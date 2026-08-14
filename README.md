@@ -53,6 +53,7 @@ O sistema estará disponível em `http://localhost:5173`.
 
 ## Estrutura do projeto
 
+```
 docViewer/
 ├── public/
 │ ├── docs/ # Arquivos .md de documentação
@@ -73,6 +74,7 @@ docViewer/
 │ └── documentsApi.js # Funções de comunicação com a API interna
 ├── vite.config.js # Configuração do Vite + plugin de API interna
 └── home.md # Conteúdo da página inicial
+```
 
 ---
 
