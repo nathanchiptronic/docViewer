@@ -165,8 +165,10 @@ O sistema suporta um bloco especial com a linguagem `api` que renderiza um compo
 Todos os títulos (`#`, `##`, `###`...) dos documentos geram automaticamente âncoras que podem ser referenciadas em links internos:
 
 ````markdown
-[Ir para Instalação](#instalação-e-execução)
+[Ir para Instalação](#instalacao-e-execucao)
 ````
+
+>***As âncoras sempre devem ser escritas sem acentução!*** Como no exemplo acima.
 
 A navegação por âncoras utiliza scroll suave dentro da área de conteúdo.
 
