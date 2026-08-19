@@ -70,7 +70,7 @@ docViewer/
 │ ├── layouts/ # Layout principal da aplicação
 │ ├── pages/ # Páginas (Home, Document)
 │ ├── router/ # Configuração de rotas e loaders
-│ └── utils/
+│ └── documents/
 │ └── documentsApi.js # Funções de comunicação com a API interna
 ├── vite.config.js # Configuração do Vite + plugin de API interna
 └── home.md # Conteúdo da página inicial

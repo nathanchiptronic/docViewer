@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData, useRevalidator } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-import Header from "../components/layout/header";
+import Header from "../components/layout/Header/Header";
 import Sidebar from "../components/layout/Sidebar/sidebar";
 import ScrollToHash from "../components/shared/ScrollToHash";
 import UploadDocument from "../components/UploadDocument/UploadDocument";

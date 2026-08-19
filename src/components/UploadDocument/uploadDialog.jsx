@@ -11,7 +11,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { useState } from "react";
 import { useNavigate, useRevalidator } from "react-router-dom";
 
-import { uploadDocument } from "../../utils/documentsApi";
+import { uploadDocument } from "../../documents/documentsApi";
 
 import AlertToast from "../shared/AlertToast";
 

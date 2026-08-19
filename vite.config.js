@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import generateDocumentsIndex from './server/generateDocumentsIndex';
 import fs from 'fs';
 import path from 'path';
+import { generateIndex } from './server/generateIndex';
 
 function markdownPlugin() {
   return {
     name: "markdown-plugin",
 
     configureServer(server) {
-      generateDocumentsIndex();
+      generateIndex();
 
       server.middlewares.use(async (req, res, next) => {
         // POST /api/docs
@@ -44,7 +44,7 @@ function markdownPlugin() {
             }
 
             fs.writeFileSync(filePath, content, "utf-8");
-            await generateDocumentsIndex();
+            await generateIndex();
 
             res.statusCode = 201;
             res.setHeader("Content-Type", "application/json");
@@ -85,7 +85,7 @@ function markdownPlugin() {
           }
 
           fs.unlinkSync(filePath);
-          await generateDocumentsIndex();
+          await generateIndex();
 
           res.statusCode = 204;
           return res.end("Documento deletado");

@@ -1,3 +1,5 @@
+import { invalidateSearchCache } from "./searchService";
+
 export async function getDocuments() {
     try {
         const response = await fetch("/.generated/documentsIndex.json");
@@ -9,7 +11,6 @@ export async function getDocuments() {
         return await response.json();
     } catch (error) {
         console.error("Erro ao buscar documentos", error);
-        return [];
     }
 }
 
@@ -27,6 +28,7 @@ export async function uploadDocument(file) {
         throw new Error(message || "Falha no upload do documento");
     }
 
+    invalidateSearchCache();
     return await response.json();
 }
 
@@ -40,5 +42,6 @@ export async function deleteDocument(fileName) {
         throw new Error(message || "Falha ao deletar documento");
     }
 
+    invalidateSearchCache();
     return await response.text();
 }

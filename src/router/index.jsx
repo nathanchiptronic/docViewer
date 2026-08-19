@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Document from "../pages/Document";
 import MainLayout from "../layouts/mainLayout";
-import { getDocuments } from "../utils/documentsApi";
+import { getDocuments } from "../documents/documentsApi";
 
 async function documentsLoader() {
   return getDocuments();

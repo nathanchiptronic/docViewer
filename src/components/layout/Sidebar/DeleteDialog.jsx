@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import { useState } from "react";
 
-import { deleteDocument } from "../../../utils/documentsApi";
+import { deleteDocument } from "../../../documents/documentsApi";
 import { useNavigate } from "react-router-dom";
 
 export default function DeleteDialog({ open, setOpen, setToast, document, onRefresh }) {
