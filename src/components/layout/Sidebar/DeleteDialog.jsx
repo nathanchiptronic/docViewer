@@ -12,7 +12,7 @@ export default function DeleteDialog({ open, setOpen, setToast, document, onRefr
     async function handleDelete() {
         setDeleting(true);
         try {
-            await deleteDocument(document.fileName);
+            await deleteDocument(document.slug);
 
             setToast({
                 open: true,

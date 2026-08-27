@@ -1,7 +1,7 @@
 import { Box, InputAdornment, ListItemButton, ListItemText, TextField, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import {searchDocuments} from '../../../documents/searchService'
 import { useEffect, useState } from "react";
-import searchDocuments from "../../../documents/searchService";
 import { useNavigate } from "react-router-dom";
 
 export default function Search() {
@@ -104,11 +104,11 @@ export default function Search() {
                         boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
                     }}
                 >
-                    {results.slice(0, 3).map((result) => (
+                    {results.map((result) => (
                         <ListItemButton
-                            key={`${result.item.slug}-${result.item.anchor}`}
+                            key={`${result.slug}-${result.anchor}`}
                             onMouseDown={() => {
-                                navigate(`/docs/${result.item.slug}/#${result.item.anchor}`);
+                                navigate(`/docs/${result.slug}/#${result.anchor}`);
                                 setQuery("");
                                 setResults([]);
                             }}
@@ -120,11 +120,22 @@ export default function Search() {
                             }}
                         >
                             <ListItemText
-                                primary={result.item.sectionTitle}
-                                secondary={result.item.documentTitle}
+                                primary={result.sectionTitle}
+                                secondary={
+                                    <>
+                                        <Typography component="span" sx={{ display: "block", fontSize: "0.75rem", color: "#888" }}>
+                                            {result.documentTitle}
+                                        </Typography>
+                                        {result.breadcrumb && (
+                                            <Typography component="span" sx={{ display: "block", fontSize: "0.7rem", color: "#aaa" }}>
+                                                {result.breadcrumb}
+                                            </Typography>
+                                        )}
+                                    </>
+                                }
                                 slotProps={{
                                     primary: { sx: { fontSize: "0.9rem", color: "#333" } },
-                                    secondary: { sx: { fontSize: "0.75rem", color: "#888" } },
+                                    secondary: { component: "div" },
                                 }}
                             />
                         </ListItemButton>

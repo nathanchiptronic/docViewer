@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+.env
+
 # Documentos Markdown
 public/docs/*
 
@@ -30,4 +32,4 @@ public/docs/*
 !public/docs/.gitkeep
 
 # Arquivos gerados
-.generated/*
+public/.generated/*

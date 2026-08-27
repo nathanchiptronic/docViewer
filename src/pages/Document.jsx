@@ -1,15 +1,13 @@
-import { useParams, useRouteLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import MarkdownViewer from "../components/Markdowns/markdownViewer";
+import { Typography } from "@mui/material";
 
 export default function Document() {
-    const { slug } = useParams();
-    const documents = useRouteLoaderData("root");
-
-    const document = documents?.find(doc => doc.slug === slug);
+    const document = useLoaderData();
 
     if (!document) {
-        return <p>Documento não encontrado.</p>;
+        return <Typography>Documento não encontrado</Typography>;
     }
 
-    return <MarkdownViewer fileName={document.fileName} directory="/docs" />;
+    return <MarkdownViewer content={document.content} />;
 }

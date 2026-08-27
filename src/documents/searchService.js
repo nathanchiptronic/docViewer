@@ -1,21 +1,28 @@
-import { createSearchEngine, search } from "./fuseEngine";
-import getSearchIndex from "./searchIndexApi";
+const apiUrl = import.meta.env.VITE_API_URL;
 
-let cachedEngine = null;
+export async function searchDocuments(query, limit = null) {
+  const params = new URLSearchParams({ q: query });
+  if (limit) params.set('limit', limit);
 
-async function getEngine() {
-  if (cachedEngine) return cachedEngine;
+  const response = await fetch(`${apiUrl}/search?${params.toString()}`);
 
-  const index = await getSearchIndex();
-  cachedEngine = createSearchEngine(index);
-  return cachedEngine;
+  if (!response.ok) {
+    throw new Error(`Erro HTTP! Status: ${response.status}`);
+  }
+
+  return (await response.json()).data;
 }
 
-export function invalidateSearchCache() {
-  cachedEngine = null;
-}
+export async function askToAI(question) {
+  const response = await fetch(`${apiUrl}/ask`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question }),
+  });
 
-export default async function searchDocuments(query) {
-  const engine = await getEngine();
-  return search(engine, query);
+  if (!response.ok) {
+    throw new Error(`Erro HTTP! Status: ${response.status}`);
+  }
+
+  return (await response.json()).data;
 }

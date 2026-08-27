@@ -1,39 +1,46 @@
-import { invalidateSearchCache } from "./searchService";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export async function getDocuments() {
-    try {
-        const response = await fetch("/.generated/documentsIndex.json");
+    const response = await fetch(`${apiUrl}/docs`);
 
-        if (!response.ok) {
-            throw new Error(`Erro HTTP! Status: ${response.status}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Erro ao buscar documentos", error);
+    if (!response.ok) {
+        throw new Error(`Erro HTTP! Status: ${response.status}`);
     }
+
+    return (await response.json()).data;
+}
+
+export async function getDocument(slug) {
+    const response = await fetch(`${apiUrl}/docs/${slug}`);
+
+    if (!response.ok) {
+        throw new Error(`Erro HTTP! Status: ${response.status}`);
+    }
+
+    return (await response.json()).data;
 }
 
 export async function uploadDocument(file) {
-    const content = await file.text();
+    const formData = new FormData();
 
-    const response = await fetch('/api/docs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fileName: file.name, content: content })
+    formData.append("document", file);
+
+    const response = await fetch(`${apiUrl}/docs`, {
+        method: "POST",
+        body: formData
     });
 
     if (!response.ok) {
-        const message = await response.text();
-        throw new Error(message || "Falha no upload do documento");
+        const data = await response.json();
+
+        throw new Error(data.message || "Falha no upload do documento");
     }
 
-    invalidateSearchCache();
     return await response.json();
 }
 
-export async function deleteDocument(fileName) {
-    const response = await fetch(`/api/docs/${encodeURIComponent(fileName)}`, {
+export async function deleteDocument(slug) {
+    const response = await fetch(`${apiUrl}/docs/${slug}`, {
         method: 'DELETE',
     });
 
@@ -42,6 +49,5 @@ export async function deleteDocument(fileName) {
         throw new Error(message || "Falha ao deletar documento");
     }
 
-    invalidateSearchCache();
     return await response.text();
 }

@@ -12,31 +12,7 @@ import ApiBlockRender from './ApiBlockRender.jsx';
 import { Children } from 'react';
 import CodeRender from './CodeRender.jsx';
 
-export default function MarkdownViewer({ fileName, directory = "/" }) {
-    const [content, setContent] = useState("");
-
-    useEffect(() => {
-        const fetchMarkdown = async () => {
-            try {
-                const url = `${directory}/${fileName}`.replace(/\/+/g, "/");
-                const response = await fetch(url);
-
-                if (!response.ok) {
-                    throw new Error(`Arquivo não encontrado: ${url}`);
-                }
-
-                const text = await response.text();
-
-                setContent(text);
-            } catch (error) {
-                console.error("Erro ao buscar arquivo:", error);
-            }
-        };
-
-        fetchMarkdown();
-    }, [fileName, directory]);
-
-
+export default function MarkdownViewer({ content }) {
     return (
         <div className='markdown'>
             <ReactMarkdown
@@ -79,25 +55,6 @@ export default function MarkdownViewer({ fileName, directory = "/" }) {
                                 {children}
                             </code>
                         );
-                    },
-                    // Captura um input
-                    input({ type, disabled, ...props }) {
-
-                        // Se for um checkbox retorna a tag sem o disabledm, para possibilitar a estilização
-                        if (type === "checkbox") {
-                            return (
-                                <input
-                                    {...props}
-                                    type="checkbox"
-                                    checked={props.checked}
-                                    readOnly
-                                    onClick={(e) => e.preventDefault()}
-                                />
-                            );
-                        }
-
-                        // Se não for checkbox não altera nada
-                        return <input type={type} disabled={disabled} {...props} />;
                     },
                     // Captura uma tag <a>
                     a({ href, children, ...props }) {

@@ -48,7 +48,9 @@ export default function UploadDialog({ open, setOpen, onUpload }) {
 
             await (onUpload?.() ?? revalidate());
 
-            navigate(`/docs/${result.slug ?? result.fileName.replace(/\.md$/, "")}`);
+            const data = await result.data
+
+            navigate(`/docs/${data.slug ?? data.filename.replace(/\.md$/, "")}`);
         } catch (error) {
             setToast({
                 open: true,
