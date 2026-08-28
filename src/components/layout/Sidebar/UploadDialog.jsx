@@ -26,6 +26,10 @@ export default function UploadDialog({ open, setOpen, onUpload  }) {
         const selectedFile = event.target.files?.[0];
 
         if (selectedFile) {
+            if (!selectedFile.name.toLowerCase().endsWith('.md')) {
+                showToast("Por favor, selecione apenas arquivos Markdown (.md).", "error");
+                return;
+            }
             setFile(selectedFile);
         }
     }
