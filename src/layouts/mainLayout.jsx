@@ -1,21 +1,22 @@
-import { Outlet, useLoaderData, useRevalidator } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import Box from "@mui/material/Box";
 
 import Header from "../components/layout/Header/Header";
-import Sidebar from "../components/layout/Sidebar/sidebar";
+import Sidebar from "../components/layout/Sidebar/Sidebar";
 import ScrollToHash from "../components/shared/ScrollToHash";
-import UploadDocument from "../components/UploadDocument/UploadDocument";
 
 export default function MainLayout() {
   const documents = useLoaderData();
-  const { revalidate } = useRevalidator();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <Header />
 
       <Box sx={{ display: "flex", flex: 1, minHeight: 0 }}>
-        <Sidebar documents={documents} onRefresh={revalidate} />
+
+        <Sidebar
+          documents={documents}
+        />
 
         <Box
           id="content-scroll"
@@ -31,8 +32,6 @@ export default function MainLayout() {
           <ScrollToHash />
           <Outlet />
         </Box>
-
-        <UploadDocument onChanged={revalidate} />
       </Box>
     </Box>
   );

@@ -3,9 +3,11 @@ import { useState } from "react";
 
 import { deleteDocument } from "../../../documents/documentsApi";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../../contexts/ToastContext";
 
-export default function DeleteDialog({ open, setOpen, setToast, document, onRefresh }) {
+export default function DeleteDialog({ open, setOpen, document, onRefresh }) {
     const navigate = useNavigate();
+    const { showToast } = useToast();
 
     const [deleting, setDeleting] = useState(false);
 
@@ -14,21 +16,13 @@ export default function DeleteDialog({ open, setOpen, setToast, document, onRefr
         try {
             await deleteDocument(document.slug);
 
-            setToast({
-                open: true,
-                message: "Documento deletado com sucesso!",
-                severity: "success",
-            })
+            showToast("Documento deletado com sucesso!", "success");
 
             setOpen(false)
             await onRefresh?.();
             navigate("/");
         } catch (error) {
-            setToast({
-                open: true,
-                message: error.message,
-                severity: "error",
-            })
+            showToast(error.message, "error");
         }
         setDeleting(false);
     }

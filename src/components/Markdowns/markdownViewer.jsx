@@ -5,8 +5,8 @@ import rehypeRaw from "rehype-raw";
 import { Link } from "react-router-dom";
 
 import '../../styles/markdown.css'
-import MermaidRender from './MermaidRender.jsx';
-import Heading from './Heading.jsx';
+import MermaidRender from './mermaidRender.jsx';
+import Heading from './heading.jsx';
 import { scrollToElement } from '../shared/ScrollToHash.jsx';
 import ApiBlockRender from './ApiBlockRender.jsx';
 import { Children } from 'react';
