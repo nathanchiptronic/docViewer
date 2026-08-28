@@ -4,8 +4,10 @@ import Typography from '@mui/material/Typography';
 
 import DescriptionIcon from '@mui/icons-material/Description';
 import Search from './Search';
+import { IconButton } from '@mui/material';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
-export default function Header() {
+export default function Header({ onOpenAsk }) {
     return (
         <AppBar position="static">
             <Toolbar sx={{ position: "relative" }}>
@@ -16,6 +18,14 @@ export default function Header() {
                 </Typography>
 
                 <Search />
+
+                <IconButton
+                    onClick={onOpenAsk}
+                    sx={{ ml: "auto", color: "#fff" }}
+                    title="Pergunte à IA"
+                >
+                    <AutoAwesomeIcon />
+                </IconButton>
             </Toolbar>
         </AppBar>
     );
