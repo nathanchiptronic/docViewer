@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Document from "../pages/Document";
 import MainLayout from "../layouts/mainLayout";
 import { getDocuments, getDocument } from "../documents/documentsApi";
+import NotFound from "../pages/NotFound";
 
 async function documentsLoader() {
   return getDocuments();
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     loader: documentsLoader,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
         loader: documentLoader,
         element: <Document />,
       },
+      {
+        path: "*",
+        element: <NotFound />,
+      }
     ],
   },
 ]);
